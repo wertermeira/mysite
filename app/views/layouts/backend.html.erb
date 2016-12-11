@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wertermeira - <%= yield :title %></title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <%= stylesheet_link_tag    'backend', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'backend', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "Página principal", root_path, class: "navbar-brand" %>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav pull-right">
+            <li>
+              <%= link_to "Posts", backend_posts_path %>
+            </li>
+            <li>
+              <%= link_to "Mensagens", backend_contacts_path %>
+            </li>
+            <li>
+              <%= link_to "#{current_user.email}", edit_user_registration_path %>
+            </li>
+            <li>
+              <%= link_to "Sair", destroy_user_session_path, method: "delete" %>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    </header>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <footer class="page-footer grey lighten-3">
+          <div class="footer-copyright">
+            <div class="container black-text">
+            © 2016 wertermeira.com.br
+            </div>
+          </div>
+    </footer>
+    <% if notice %>
+      <%= javascript_tag "$.notify('#{notice}', 'success');" %>
+    <% end %>
+
+    <% if alert %>
+        <script>
+          $.notify("<%= alert %>", "error");
+        </script>
+    <% end %>
+  </body>
+</html>

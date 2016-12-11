@@ -1,0 +1,14 @@
+<div class="col-md-6 col-md-offset-3">
+  <%= simple_form_for([:backend, @post], html: { multipart: true, class: 'form-horizontal' }) do |f| %>
+    <%= f.input :title %>
+    <%= f.fields_for :image do |fimg| %>
+       <%= fimg.input :file, as: :file, wrapper: :vertical_file_input %>
+    <% end %>
+    <%= f.input :description, as: :text, html: {rows: 10}%>
+    <%= f.input :link, as: :url %>
+    <div class="form-group">
+      <%= f.button :submit, class: "btn-success" %>
+    </div>
+  <% end %>
+
+</div>

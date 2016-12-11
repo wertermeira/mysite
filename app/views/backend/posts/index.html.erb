@@ -1,0 +1,49 @@
+<% content_for(:title, "Posts") %>
+<h2>Todos os posts</h2>
+<div class="row">
+  <div class="col-md-12 text-right">
+    <%= link_to new_backend_post_path, class: "btn btn-primary", title: "Cadastrar" do %>
+        <i class="glyphicon glyphicon-plus"></i>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <table class="table table-striped table-responsive">
+      <thead>
+        <tr>
+            <th data-field="id">#</th>
+            <th data-field="title">Título</th>
+            <th data-field="description">Descrição</th>
+            <th data-field="link">Link</th>
+            <th data-field="action">Ação</th>
+        </tr>
+      </thead>
+
+      <tbody class="">
+        <% @posts.each do |post| %>
+        <tr>
+          <td>
+            <%= post.id %>
+          </td>
+          <td>
+            <%= post.title %>
+          </td>
+          <td>
+            <%= post.description %>
+          </td>
+          <td>
+            <%= post.link %>
+          </td>
+          <td>
+            <%= link_to backend_post_path(post) do %><i class="glyphicon glyphicon-eye-open"></i><% end %>
+            <%= link_to edit_backend_post_path(post) do %><i class="glyphicon glyphicon-pencil"></i><% end %>
+            <%= link_to backend_post_path(post),data: { confirm: "tem certeza que deseja deletar?" }, method: "delete" do %><i class="glyphicon glyphicon-trash"></i><% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>
+<div class="row text-center">
+  <%= paginate @posts %>
+</div>

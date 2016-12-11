@@ -1,0 +1,12 @@
+<% content_for(:title, @post.title)%>
+<article>
+  <h1><%= @post.title %></h1>
+  <figure>
+    <% if @post.image %>
+    <%= image_tag(@post.image.file) %>
+    <% end %>
+  </figure>
+  <p>
+    <%= @post.description %>
+  </p>
+</article>
